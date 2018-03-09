@@ -166,6 +166,12 @@ declare namespace WebSocket {
         perMessageDeflate?: boolean | PerMessageDeflateOptions;
         maxPayload?: number;
     }
+    
+    interface Address {
+        address: string;
+        family: string;
+        port: number
+    }
 
     // WebSocket Server
     class Server extends events.EventEmitter {
@@ -175,6 +181,7 @@ declare namespace WebSocket {
 
         constructor(options?: ServerOptions, callback?: () => void);
 
+        address(): Address;
         close(cb?: (err?: Error) => void): void;
         handleUpgrade(request: http.IncomingMessage, socket: net.Socket,
             upgradeHead: Buffer, callback: (client: WebSocket) => void): void;
